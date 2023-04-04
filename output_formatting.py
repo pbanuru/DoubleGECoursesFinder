@@ -8,10 +8,10 @@ def format_output(common_courses, ge1, ge2, quarter):
     output.append(apply_color("bright_green", f"\tCommon courses of {ge1} and {ge2} for {quarter} quarter:"))
 
     for course in common_courses:
-        output.append(apply_color("bright_blue", f"\t\t{course[0]}: {course[1]}"))  # Course ID and title
-        output.append(apply_color("bright_black", f"\t\t\tGE: {course[3]}"))  # GE text
+        output.append(apply_color("bright_blue", f"\t\t{course['id']}: {course['title']}"))  # Course ID and title
+        output.append(apply_color("bright_black", f"\t\t\tGE: {course['ge_text']}"))  # GE text
 
-        wrapped_description = indent_matcher_overflow(f"\t\t\tDescription: {course[2]}\n")
+        wrapped_description = indent_matcher_overflow(f"\t\t\tDescription: {course['description']}\n")
         colored_wrapped_description = apply_color("bright_cyan", wrapped_description)
         output.append(colored_wrapped_description)
 
