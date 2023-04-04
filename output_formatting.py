@@ -1,24 +1,29 @@
 import shutil
 import textwrap
+from typing import List, Dict
 
 from color_handling import apply_color
 
-def format_output(common_courses, ge1, ge2, quarter):
+def format_output(common_courses: List[Dict], ge_first: str, ge_second: str, quarter: str) -> str:
     output = []
-    output.append(apply_color("bright_green", f"\tCommon courses of {ge1} and {ge2} for {quarter} quarter:"))
+    output.append(apply_color("bright_green", f"\tCommon courses of {ge_first} and {ge_second} for {quarter} quarter:"))
 
     for course in common_courses:
-        output.append(apply_color("bright_blue", f"\t\t{course['id']}: {course['title']}"))  # Course ID and title
-        output.append(apply_color("bright_black", f"\t\t\tGE: {course['ge_text']}"))  # GE text
+        course_id = course['id']
+        course_title = course['title']
+        course_ge = course['ge_text']
+        course_description = course['description']
 
-        wrapped_description = indent_matcher_overflow(f"\t\t\tDescription: {course['description']}\n")
+        output.append(apply_color("bright_blue", f"\t\t{course_id}: {course_title}"))
+        output.append(apply_color("bright_black", f"\t\t\tGE: {course_ge}"))
+
+        wrapped_description = indent_wrap_text(f"\t\t\tDescription: {course_description}\n")
         colored_wrapped_description = apply_color("bright_cyan", wrapped_description)
         output.append(colored_wrapped_description)
 
     return "\n".join(output)
 
-def indent_matcher_overflow(text):
-    # Detect the indent at the beginning of the text
+def indent_wrap_text(text: str) -> str:
     indent = ""
     for char in text:
         if char == " " or char == "\t":
@@ -26,11 +31,8 @@ def indent_matcher_overflow(text):
         else:
             break
 
-    # Get terminal width
     terminal_width = shutil.get_terminal_size().columns
 
-    # Use textwrap to break the text into lines based on the terminal width
     lines = textwrap.wrap(text, width=terminal_width, subsequent_indent=indent)
 
-    # Join the lines with newlines and return the result
     return "\n".join(lines)
