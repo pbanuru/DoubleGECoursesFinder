@@ -27,7 +27,7 @@ COLOR_CODES = {
 RESET_CODE = "\033[0m"
 
 # Apply the specified color to a given text
-def apply_color(color, text):
+def apply_color(color : str, text : str) -> str:
     if color in COLOR_CODES:
         # Apply the color code to the text and reset the formatting
         colored_output = f"{COLOR_CODES[color]}{text}{RESET_CODE}"
