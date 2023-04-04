@@ -1,6 +1,9 @@
+# Custom exception class for invalid color errors
 class InvalidColorError(Exception):
     pass
 
+# Dictionary containing ANSI Escape color codes for the terminal
+# If you aren't familiar with ANSI Escape codes, watch this: https://youtu.be/W0mlGkew6K4
 COLOR_CODES = {
     "black": "\033[30m",
     "red": "\033[31m",
@@ -20,10 +23,13 @@ COLOR_CODES = {
     "bright_white": "\033[97m"
 }
 
+# ANSI Escape Reset code to clear color formatting
 RESET_CODE = "\033[0m"
 
+# Apply the specified color to a given text
 def apply_color(color, text):
     if color in COLOR_CODES:
+        # Apply the color code to the text and reset the formatting
         colored_output = f"{COLOR_CODES[color]}{text}{RESET_CODE}"
     else:
         raise InvalidColorError(f"{COLOR_CODES['red']}Invalid color specified: {RESET_CODE}{color}")
