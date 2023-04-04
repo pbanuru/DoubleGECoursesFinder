@@ -24,13 +24,11 @@ def run_query(query, variables=None):
     data = {"query": query, "variables": variables}
     response = requests.post(url, json=data, headers=headers)
     
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(response.content) 
-        raise Exception(f"Query failed with status code {response.status_code}.")
+    response.raise_for_status()
+    
+    return response.json()
 
-def extract_courses_from_result(result):
-    if result["data"]["schedule"] is None:
-        return {}
-    return {course["course"]["id"]: course for course in result["data"]["schedule"] if course["course"] is not None}
+def extract_courses_from_result(query_result):
+    if query_result["data"]["schedule"] is None:
+        raise ValueError("No schedule data found for the given parameters")
+    return {course["course"]["id"]: course for course in query_result["data"]["schedule"] if course["course"] is not None}
