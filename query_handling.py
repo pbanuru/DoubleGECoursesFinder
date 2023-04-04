@@ -1,8 +1,8 @@
 import requests
 
 QUERY_TEMPLATE = '''
-query($ge: String, $quarter: String!) {
-    schedule(year:2023, quarter: $quarter, ge: $ge) {
+query($year: Float!, $ge: String, $quarter: String!) {
+    schedule(year:$year, quarter: $quarter, ge: $ge) {
         course {
             id
             title
@@ -24,7 +24,12 @@ def run_query(query, variables=None):
     data = {"query": query, "variables": variables}
     response = requests.post(url, json=data, headers=headers)
     
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(e)
+        print(response.text)
+        raise e
     
     return response.json()
 

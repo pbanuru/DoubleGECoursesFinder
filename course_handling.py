@@ -21,15 +21,15 @@ def get_common_courses(ge_category1_courses, ge_category2_courses, online_only):
 
     return common_courses_found
 
-def fetch_courses(ge_category, quarter):
-    query_variables = {"ge": ge_category, "quarter": quarter}
+def fetch_courses(year, ge_category, quarter):
+    query_variables = {"year": year, "ge": ge_category, "quarter": quarter}
     result = run_query(QUERY_TEMPLATE, query_variables)
     courses = extract_courses_from_result(result)
     return courses
 
-def find_common_courses(ge_category1, ge_category2, quarter, online_only=False):
-    ge_category1_courses = fetch_courses(ge_category1, quarter)
-    ge_category2_courses = fetch_courses(ge_category2, quarter)
+def find_common_courses(year, ge_category1, ge_category2, quarter, online_only=False):
+    ge_category1_courses = fetch_courses(year, ge_category1, quarter)
+    ge_category2_courses = fetch_courses(year, ge_category2, quarter)
 
     common_courses = get_common_courses(ge_category1_courses, ge_category2_courses, online_only)
 
@@ -41,9 +41,9 @@ def find_common_courses(ge_category1, ge_category2, quarter, online_only=False):
     return output
 
 
-def pair_ge_categories(ge_pair1, ge_pair2, quarter, online_only=False):
-    output1 = find_common_courses(ge_pair1[0], ge_pair1[1], quarter, online_only)
-    output2 = find_common_courses(ge_pair2[0], ge_pair2[1], quarter, online_only)
+def pair_ge_categories(year, ge_pair1, ge_pair2, quarter, online_only=False):
+    output1 = find_common_courses(year, ge_pair1[0], ge_pair1[1], quarter, online_only)
+    output2 = find_common_courses(year, ge_pair2[0], ge_pair2[1], quarter, online_only)
 
     if output1 and output2:
         print(output1)
