@@ -2,7 +2,13 @@
 
 This is a script that helps you find General Education (GE) courses that satisfy multiple requirements for the University of California, Irvine. The script queries the PeterPortal API to fetch course data and find courses that fulfill the specified requirements.
 
-Note: This code works. However, it still needs some refactoring, specifically in the main.py section regarding the explanation of the `pair_ge_categories()` function use. I wrote this script to help me find courses that satisfy my GE requirements, and I decided to share it in case it helps others. If you have any suggestions on how to improve the code, feel free to open an issue or submit a pull request.
+# Additional
+
+Note: 
+This code works. 
+However, it is not complete in terms of commenting and type annotations.
+
+I wrote this script to quickly help me find courses that satisfy my GE requirements, and I decided to share it in case it helps others. If you have any suggestions on how to improve the code, feel free to open an issue or submit a pull request.
 
 ## Requirements
 
@@ -48,3 +54,4 @@ python main.py
 The script will output the common courses that satisfy the specified GE requirements for each combination in `ge_pairs`. If no common courses are found, it will display a "No common courses found." message.
 
 Or if you went the single course route, it will output the common courses that satisfy the specified GE requirements, or None if no common courses are found.
+
