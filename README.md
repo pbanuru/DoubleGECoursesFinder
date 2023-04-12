@@ -5,7 +5,7 @@ This is a script that helps you find General Education (GE) courses that satisfy
 # Additional
 
 Note: 
-This code works. 
+This code works well. 
 However, it is not complete in terms of commenting and type annotations.
 
 I wrote this script to quickly help me find courses that satisfy my GE requirements, and I decided to share it in case it helps others. If you have any suggestions on how to improve the code, feel free to open an issue or submit a pull request.
