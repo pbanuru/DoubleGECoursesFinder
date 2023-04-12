@@ -33,12 +33,14 @@ Example:
 Let's say you need four more GEs to graduate, ex. GE-7, GE-8, GE-4, and (GE-2 or GE-3). 
 Since GE-7 and GE-8 courses are often paired with other GEs as 2in1 courses, you can use the following configuration to search for all likely possible combinations of courses that satisfy these requirements:
 
+```
 ge_pairs = [
     (("GE-7", "GE-4"), ("GE-8", "GE-2")),
     (("GE-7", "GE-2"), ("GE-8", "GE-4")),
     (("GE-7", "GE-4"), ("GE-8", "GE-3")),
     (("GE-7", "GE-3"), ("GE-8", "GE-4"))
 ]
+```
 
 For the first tuple, `pair_ge_categories(year, option[0], option[1], quarter, online_filter)` will search for courses that satisfy GE-7 and GE-4 with one course and GE-8 and GE-2 with another course, and so on.
 
