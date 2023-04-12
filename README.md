@@ -16,7 +16,7 @@ Please make sure you have installed all necessary packages listed in the `requir
 
 To install the required packages, run the following command:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## Usage
 
